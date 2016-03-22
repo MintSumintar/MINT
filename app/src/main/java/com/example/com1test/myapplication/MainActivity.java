@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         // Bind Widget
         bindWidget();
 
+
         //Request Database
         myMange = new MyMange(this);
         //Button Controller
