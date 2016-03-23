@@ -1,5 +1,6 @@
 package com.example.com1test.myapplication;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,13 +33,27 @@ public class MainActivity extends AppCompatActivity {
         buttonController();
 
         //Tester Add Value
-        tester();
+        //tester();
+
+        //Detele All SQLite
+        deteleAllSQLite();
+
 
     }   // Main Method
 
+    private void deteleAllSQLite() {
+
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        sqLiteDatabase.delete(MyMange.user_table, null, null);
+        sqLiteDatabase.delete(MyMange.question_table, null, null);
+
+
+    }
+
     private void tester() {
-        myMange.addValueToSQLite(1, "user", "pass", "name");
-        myMange.addValueToSQLite(2, "food", "price", "source");
+        myMange.addValueToSQLite("user", "pass", "name");
+        myMange.addQuestion("คำถาม","ก","ข","ค","ง","1");
 
     }
 

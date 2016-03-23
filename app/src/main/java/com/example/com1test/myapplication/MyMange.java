@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- * Created by com1test on 22/3/2559.
+ * Created by masterUNG on 3/22/16 AD.
  */
 public class MyMange {
 
@@ -19,10 +19,14 @@ public class MyMange {
     public static final String column_Password = "Password";
     public static final String column_Name = "Name";
 
-    public static final String food_table = "foodTABLE";
-    public static final String column_Food = "Food";
-    public static final String column_Price = "Price";
-    public static final String column_Source = "Source";
+
+    public static final String question_table = "questionTABLE";
+    public static final String column_Question = "Question";
+    public static final String column_Choice1 = "Choice1";
+    public static final String column_Choice2 = "Choice2";
+    public static final String column_Choice3 = "Choice3";
+    public static final String column_Choice4 = "Choice4";
+    public static final String column_Answer = "Answer";
 
 
     public MyMange(Context context) {
@@ -31,40 +35,44 @@ public class MyMange {
         myOpenHelper = new MyOpenHelper(context);
         writeSqLiteDatabase = myOpenHelper.getWritableDatabase();
         readSqLiteDatabase = myOpenHelper.getReadableDatabase();
-    } // Constructor
 
-    public long addValueToSQLite(int intTABLE,
-                                 String strFirst,
-                                 String strSecond,
-                                 String strThird) {
-        long mylong = 0;
-        switch (intTABLE) {
+    }   // Constructor
 
-            case 1:
-                //userTABLE
-                ContentValues contentValues = new ContentValues();
-                contentValues.put(column_User,strFirst);
-                contentValues.put(column_Password,strSecond);
-                contentValues.put(column_Name,strThird);
+    public long addQuestion(String strQuestion,
+                            String strChoice1,
+                            String strChoice2,
+                            String strChoice3,
+                            String strChoice4,
+                            String strAnswer) {
 
-                mylong = writeSqLiteDatabase.insert(user_table, null, contentValues);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(column_Question, strQuestion);
+        contentValues.put(column_Choice1, strChoice1);
+        contentValues.put(column_Choice2, strChoice2);
+        contentValues.put(column_Choice3, strChoice3);
+        contentValues.put(column_Choice4, strChoice4);
+        contentValues.put(column_Answer, strAnswer);
 
-                break;
-            case 2:
-                //foodTABLE
-                ContentValues contentValues1 = new ContentValues();
-                contentValues1.put(column_Food, strFirst);
-                contentValues1.put(column_Price, strSecond);
-                contentValues1.put(column_Source, strThird);
-
-                mylong = writeSqLiteDatabase.insert(food_table, null, contentValues1);
-
-                break;
-
-        }   //switch
-
-        return mylong;
+        return writeSqLiteDatabase.insert(question_table, null, contentValues);
     }
 
 
-}   //Main Class
+    public long addValueToSQLite(String strFirst,
+                                 String strSecond,
+                                 String strThird) {
+
+        long myLong = 0;
+
+        //userTABLE
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(column_User, strFirst);
+        contentValues.put(column_Password, strSecond);
+        contentValues.put(column_Name, strThird);
+
+        myLong = writeSqLiteDatabase.insert(user_table, null, contentValues);
+
+        return myLong;
+    }
+
+
+}   // Main Class

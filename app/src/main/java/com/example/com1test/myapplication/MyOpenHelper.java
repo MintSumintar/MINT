@@ -19,11 +19,14 @@ public class MyOpenHelper extends SQLiteOpenHelper{
             "Password text," +
             "Name text);";
 
-    private static final String create_food_table = "create table foodTABLE (" +
+    private static final String create_question_table = "create table questionTABLE (" +
             "_id integer primary key, " +
-            "Food text, "+
-            "Price text," +
-            "Source text);";
+            "question text, "+
+            "Choice1 text, "+
+            "Choice2 text, "+
+            "Choice3 text, "+
+            "Choice4 text," +
+            "Answer text);";
 
 
     public MyOpenHelper(Context context) {
@@ -33,7 +36,7 @@ public class MyOpenHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(create_user_table);
-        sqLiteDatabase.execSQL(create_food_table);
+        sqLiteDatabase.execSQL(create_question_table);
     }
 
     @Override
